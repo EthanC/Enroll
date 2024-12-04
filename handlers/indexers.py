@@ -65,6 +65,8 @@ def DOGnzb() -> Indexer | None:
         # reasonable intervals and the restriction will lift automatically."
         if "blacklisted" in data.lower():
             logger.warning(f"Indexer {meta.name} ratelimited registration check")
+
+            return
         else:
             logger.success(f"Indexer {meta.name} registration is open")
 
@@ -221,8 +223,13 @@ def omgwtfnzbs() -> Indexer | None:
     data: str | None = _Request(meta)
 
     if data:
+        # "Stop trying stuff .. banned!"
+        if "banned" in data.lower():
+            logger.warning(f"Indexer {meta.name} ratelimited registration check")
+
+            return
         # "Public Registrations have been disabled by the site admin"
-        if not "site admin" in data.lower():
+        elif not "site admin" in data.lower():
             logger.success(f"Indexer {meta.name} registration is open")
 
             return meta
