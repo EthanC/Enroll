@@ -1,0 +1,22 @@
+[project]
+name = "enroll"
+version = "1.0.0"
+description = "Monitor Usenet Indexers and notify about open registrations."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "discord-webhook>=1.3.1",
+    "httpx>=0.28.0",
+    "loguru>=0.7.2",
+    "loguru-discord>=1.4.0",
+    "python-dotenv>=1.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.1",
+]
+
+[tool.ruff.lint]
+select = ["I"]
