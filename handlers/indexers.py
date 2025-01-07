@@ -135,8 +135,13 @@ def NewzBurners() -> Indexer | None:
     data: str | None = _Request(meta)
 
     if data:
+        # "Important: Server Downtime and Migration Update"
+        if "server downtime" in data.lower():
+            logger.info(f"Indexer {meta.name} is currently undergoing maintenance")
+
+            return
         # "Registrations are currently disabled."
-        if not "currently disabled" in data.lower():
+        elif not "currently disabled" in data.lower():
             logger.success(f"Indexer {meta.name} registration is open")
 
             return meta
