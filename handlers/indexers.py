@@ -122,33 +122,6 @@ def NewzBay() -> Indexer | None:
     logger.info(f"Indexer {meta.name} registration is closed")
 
 
-def NewzBurners() -> Indexer | None:
-    """Determine registration availability for NewzBurners."""
-
-    meta = Indexer(
-        "NewzBurners",
-        "https://nzbs.in/",
-        "https://nzbs.in/register/",
-        "487ABE",
-        "https://nzbs.in/templates/nzbsin_dark/images/favicon.gif",
-    )
-    data: str | None = _Request(meta)
-
-    if data:
-        # "Important: Server Downtime and Migration Update"
-        if "server downtime" in data.lower():
-            logger.info(f"Indexer {meta.name} is currently undergoing maintenance")
-
-            return
-        # "Registrations are currently disabled."
-        elif not "currently disabled" in data.lower():
-            logger.success(f"Indexer {meta.name} registration is open")
-
-            return meta
-
-    logger.info(f"Indexer {meta.name} registration is closed")
-
-
 def NZBCat() -> Indexer | None:
     """Determine registration availability for NZB.Cat."""
 
@@ -164,6 +137,33 @@ def NZBCat() -> Indexer | None:
     if data:
         # "Registrations are currently invite only."
         if not "invite only" in data.lower():
+            logger.success(f"Indexer {meta.name} registration is open")
+
+            return meta
+
+    logger.info(f"Indexer {meta.name} registration is closed")
+
+
+def NZBsin() -> Indexer | None:
+    """Determine registration availability for NZBs.in (formerly NewzBurnerz)."""
+
+    meta = Indexer(
+        "NZBs.in",
+        "https://v2.nzbs.in/login",
+        "https://v2.nzbs.in/register",
+        "6CFFF0",
+        "https://i.imgur.com/avY6azl.png",
+    )
+    data: str | None = _Request(meta)
+
+    if data:
+        # "Important: Server Downtime and Migration Update"
+        if "server downtime" in data.lower():
+            logger.info(f"Indexer {meta.name} is currently undergoing maintenance")
+
+            return
+        # "Registration is currently closed."
+        elif not "currently closed" in data.lower():
             logger.success(f"Indexer {meta.name} registration is open")
 
             return meta

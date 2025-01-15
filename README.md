@@ -23,8 +23,8 @@ Regardless of your chosen setup method, Enroll is intended for use with a task s
 -   `INDEXER_DOGNZB`: Check the Indexer [DOGnzb](https://dognzb.cr/login) for open registration.
 -   `INDEXER_DRUNKENSLUG`: Check the Indexer [DrunkenSlug](https://drunkenslug.com/login) for open registration.
 -   `INDEXER_NEWZBAY`: Check the Indexer [NewzBay](https://newzbay.cc/) for open registration.
--   `INDEXER_NEWZBURNERS`: Check the Indexer [NewzBurners](https://nzbs.in/) for open registration.
 -   `INDEXER_NZBCAT`: Check the Indexer [NZB.Cat](https://nzb.cat/) for open registration.
+-   `INDEXER_NZBSIN`: Check the Indexer [NZBs.in](https://v2.nzbs.in/) for open registration.
 -   `INDEXER_NZBCORE`: Check the Indexer [NZBCORE](https://nzbcore.info/nnplus/www/) for open registration.
 -   `INDEXER_NINJACENTRAL`: Check the Indexer [NinjaCentral](https://ninjacentral.co.za/) for open registration.
 -   `INDEXER_OMGWTFNZBS`: Check the Indexer [omgwtfnzbs](https://omgwtfnzbs.org/login) for open registration.

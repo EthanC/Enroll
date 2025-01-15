@@ -14,9 +14,9 @@ from handlers.indexers import (
     DrunkenSlug,
     Indexer,
     NewzBay,
-    NewzBurners,
     NinjaCentral,
     NZBCat,
+    NZBsin,
     TabulaRasa,
     omgwtfnzbs,
 )
@@ -72,16 +72,16 @@ def Start() -> None:
         if result := NewzBay():
             Notify(result)
 
-    if environ.get("INDEXER_NEWZBURNERS"):
-        count += 1
-
-        if result := NewzBurners():
-            Notify(result)
-
     if environ.get("INDEXER_NZBCAT"):
         count += 1
 
         if result := NZBCat():
+            Notify(result)
+
+    if environ.get("INDEXER_NZBSIN"):
+        count += 1
+
+        if result := NZBsin():
             Notify(result)
 
     if environ.get("INDEXER_NZBCORE"):
@@ -109,7 +109,7 @@ def Start() -> None:
             Notify(result)
 
     logger.success(
-        f"Completed {count:,} Indexer registration availability {"check" if count == 1 else "checks"}"
+        f"Completed {count:,} Indexer registration availability {'check' if count == 1 else 'checks'}"
     )
 
 

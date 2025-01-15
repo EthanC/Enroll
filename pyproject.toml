@@ -1,6 +1,6 @@
 [project]
 name = "enroll"
-version = "1.1.0"
+version = "1.2.0"
 description = "Monitor Usenet Indexers and notify about open registrations."
 readme = "README.md"
 requires-python = ">=3.13"
@@ -14,7 +14,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ruff>=0.8.6",
+    "ruff>=0.9.1",
 ]
 
 [tool.ruff.lint]
