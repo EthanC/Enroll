@@ -18,7 +18,7 @@ class Indexer:
         self.icon: str = icon
 
 
-def _Request(indexer: Indexer) -> str | None:
+def _Request(indexer: Indexer, allow: list[int] = []) -> str | None:
     """Safely perform an HTTP request and return the response if available."""
 
     logger.debug(f"Checking registration availability of {indexer.name}...")
@@ -34,16 +34,16 @@ def _Request(indexer: Indexer) -> str | None:
         if not request:
             raise RuntimeError("request object is null")
     except Exception as e:
-        logger.opt(exception=e).error(
-            f"Failed to determine Indexer {indexer.name} registration availability"
-        )
+        if (not request) or (request.status_code not in allow):
+            logger.opt(exception=e).error(
+                f"Failed to determine Indexer {indexer.name} registration availability"
+            )
 
-        return
+            return
 
     logger.trace(f"{request.text=}")
 
-    if request.status_code == 200:
-        return request.text
+    return request.text
 
 
 def DOGnzb() -> Indexer | None:
@@ -154,7 +154,7 @@ def NZBsin() -> Indexer | None:
         "6CFFF0",
         "https://i.imgur.com/avY6azl.png",
     )
-    data: str | None = _Request(meta)
+    data: str | None = _Request(meta, [403])
 
     if data:
         # "Important: Server Downtime and Migration Update"
