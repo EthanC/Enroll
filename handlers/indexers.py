@@ -163,7 +163,10 @@ def NZBsin() -> Indexer | None:
 
             return
         # "Registration is currently closed."
-        elif not "currently closed" in data.lower():
+        # "Registration is by invitation only."
+        elif (not "currently closed" in data.lower()) and (
+            not "invitation only" in data.lower()
+        ):
             logger.success(f"Indexer {meta.name} registration is open")
 
             return meta
